@@ -1,0 +1,40 @@
+package unit_testing;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import thuvien.tinhtoan.PhepTinh;
+public class TestPhepToan {
+	@Test
+	public void TestCong() {
+		System.out.println(PhepTinh.Op('+', 14, 20));
+	}
+	@Test
+	public void TestTru() {
+		System.out.println(PhepTinh.Op('-', 14, 20));
+	}
+	@Test
+	public void TestNhan() {
+		System.out.println(PhepTinh.Op('*', 14, 20));
+	}
+	@DataProvider(name="testdata1")
+	public Object[][] TestDataFeed1()
+	{
+     ReadExcelFile config = new     
+          ReadExcelFile("D:\\Kiem Thu Tu Dong\\Bai tap them ve Data driven testing\\Baitap1\\Thu vien va Du lieu kiem thu\\Tesstdata.xlsx");
+		
+				
+		int rows = config.getRowCount(0);
+		
+		Object[][] data = new Object[rows][2];
+		
+		for(int i=0; i<rows; i++)
+		{
+			data[i][0] =(float)config.getNumericData(0, i, 0);
+			data[i][1] =(float)config.getNumericData(0, i, 1);	
+			data[i][2] =(float)config.getNumericData(0, i, 1);
+		}
+		
+		return data;
+	}
+}
